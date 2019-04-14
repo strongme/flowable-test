@@ -3,6 +3,7 @@ package cn.strongme.flowabletest;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
+import org.flowable.engine.runtime.Execution;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.engine.test.Deployment;
 import org.flowable.engine.test.FlowableTestCase;
@@ -50,11 +51,12 @@ public class FlowableTest extends FlowableTestCase {
         assertThat(tasksForSubmitOpinion.size()).isEqualTo(3);
 
 
-        List<String> exIds = tasksForSubmitOpinion.stream().map(Task::getExecutionId).collect(Collectors.toList());
         //回退到发起会议
+        Execution taskExecution = runtimeService.createExecutionQuery().executionId(tasksForSubmitOpinion.get(0).getExecutionId()).singleResult();
+
         runtimeService.createChangeActivityStateBuilder()
                 .processInstanceId(processInstanceId)
-                .moveExecutionsToSingleActivityId(exIds, "startMeeting")
+                .moveExecutionToActivityId(taskExecution.getParentId(), "startMeeting")
                 .changeState();
 
         task = taskService.createTaskQuery().processInstanceId(processInstanceId).taskDefinitionKey("startMeeting").active().singleResult();
