@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef">
+  <process id="last-step-vars-works-or-not" name="最后一步设置的变量是否有用" isExecutable="true">
+    <startEvent id="start" name="开始"></startEvent>
+    <userTask id="setvars">
+      <extensionElements>
+        <flowable:taskListener event="complete" class="cn.strongme.flowabletest.testVars.SetVarsListener"></flowable:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sid-0A7854DC-9544-4C19-943D-20AA7D3FF15F" sourceRef="start" targetRef="setvars"></sequenceFlow>
+    <endEvent id="end" name="结束"></endEvent>
+    <sequenceFlow id="sid-01195414-16C9-4081-99A4-73F3D6330D99" sourceRef="setvars" targetRef="end"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_last-step-vars-works-or-not">
+    <bpmndi:BPMNPlane bpmnElement="last-step-vars-works-or-not" id="BPMNPlane_last-step-vars-works-or-not">
+      <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_start">
+        <omgdc:Bounds height="30.0" width="30.0" x="100.0" y="163.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="setvars" id="BPMNShape_setvars">
+        <omgdc:Bounds height="80.0" width="100.0" x="285.0" y="138.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="end" id="BPMNShape_end">
+        <omgdc:Bounds height="28.0" width="28.0" x="540.0" y="164.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-01195414-16C9-4081-99A4-73F3D6330D99" id="BPMNEdge_sid-01195414-16C9-4081-99A4-73F3D6330D99">
+        <omgdi:waypoint x="384.9499999999926" y="178.0"></omgdi:waypoint>
+        <omgdi:waypoint x="540.0" y="178.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-0A7854DC-9544-4C19-943D-20AA7D3FF15F" id="BPMNEdge_sid-0A7854DC-9544-4C19-943D-20AA7D3FF15F">
+        <omgdi:waypoint x="129.9499996223143" y="178.0"></omgdi:waypoint>
+        <omgdi:waypoint x="284.9999999998994" y="178.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

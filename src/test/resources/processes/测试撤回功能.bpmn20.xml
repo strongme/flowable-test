@@ -6,13 +6,13 @@
     <sequenceFlow id="sid-09F754DD-80A3-4A65-8CC7-9AF7118E78E9" sourceRef="start" targetRef="startMeeting"></sequenceFlow>
     <userTask id="submitOpinion" name="发表意见" flowable:assignee="${assignee}">
       <extensionElements>
-        <flowable:taskListener event="complete" class="cn.strongme.flowabletest.SubmitOpinionListener"></flowable:taskListener>
+        <flowable:taskListener event="complete" class="cn.strongme.flowabletest.testRollback.SubmitOpinionListener"></flowable:taskListener>
         <modeler:initiator-can-complete xmlns:modeler="http://flowable.org/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
       </extensionElements>
       <multiInstanceLoopCharacteristics isSequential="false" flowable:collection="${userList}" flowable:elementVariable="assignee"></multiInstanceLoopCharacteristics>
     </userTask>
     <sequenceFlow id="sid-7770BA70-3574-440C-9782-7811FB5A3B28" sourceRef="startMeeting" targetRef="submitOpinion"></sequenceFlow>
-    <serviceTask id="autoDecide" name="自动判定会议意见结果" flowable:class="cn.strongme.flowabletest.AutoDecideMeeting"></serviceTask>
+    <serviceTask id="autoDecide" name="自动判定会议意见结果" flowable:class="cn.strongme.flowabletest.testRollback.AutoDecideMeeting"></serviceTask>
     <sequenceFlow id="sid-445C2BC1-DBAC-47CE-B7C5-03164FD31C61" sourceRef="submitOpinion" targetRef="autoDecide"></sequenceFlow>
     <endEvent id="end" name="结束"></endEvent>
     <exclusiveGateway id="sid-5D645E68-3987-4C5A-8B55-C6B03D40D230"></exclusiveGateway>
