@@ -23,7 +23,7 @@
 
         <!-- job executor configurations -->
         <property name="asyncExecutor" ref="asyncExecutor"/>
-        <property name="asyncExecutorActivate" value="false"/>
+        <property name="asyncExecutorActivate" value="true"/>
 
         <property name="asyncFailedJobWaitTime" value="1"/>
 
@@ -51,6 +51,7 @@
         <property name="enableProcessDefinitionHistoryLevel" value="true"/>
 
         <property name="enableProcessDefinitionInfoCache" value="true"/>
+        <property name="enableDatabaseEventLogging" value="true"/>
 
         <property name="clock">
             <bean class="org.flowable.common.engine.impl.util.TestClockImpl"/>
