@@ -1,6 +1,5 @@
 package cn.strongme.flowabletest.flow;
 
-import org.apache.commons.lang3.StringUtils;
 import org.flowable.task.service.delegate.DelegateTask;
 
 /**
@@ -21,9 +20,6 @@ public class DefaultApproveWithAuditTaskListener extends DefaultApproveTaskListe
         super.handleComplete(delegateTask);
         //检查当前任务是否提交approveCode
         String approveCode = delegateTask.getVariableLocal(WorkFlowConstant.VAR_NAME_APPROVE_CODE, String.class);
-        if (StringUtils.isBlank(approveCode)) {
-            throw new RuntimeException("缺少意见参数");
-        }
         delegateTask.setVariable(WorkFlowConstant.VAR_NAME_MULTI_AUDIT_FINISH, WorkFlowConstant.APPROVE_CODE_YES.equals(approveCode));
     }
 

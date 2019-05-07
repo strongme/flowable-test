@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
+import static cn.strongme.flowabletest.flow.WorkFlowConstant.WORKFLOW_ID;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -91,7 +92,7 @@ public class EditModelerTest {
 
         ProcessDefinition processDefinition = repositoryService
                 .createProcessDefinitionQuery()
-                .processDefinitionKey(BusinessWorkFlowService.WORKFLOW_ID)
+                .processDefinitionKey(WORKFLOW_ID)
                 .active()
                 .singleResult();
 
@@ -110,7 +111,7 @@ public class EditModelerTest {
         vars.put("approver", "jack");
         vars.put("auditor", "mary");
 
-        ProcessInstance instance = runtimeService.startProcessInstanceByKey(BusinessWorkFlowService.WORKFLOW_ID, vars);
+        ProcessInstance instance = runtimeService.startProcessInstanceByKey(WORKFLOW_ID, vars);
 
         log.info("InstanceId: {}", instance.getId());
 

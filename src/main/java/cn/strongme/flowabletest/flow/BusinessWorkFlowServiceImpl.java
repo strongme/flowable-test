@@ -15,7 +15,6 @@ import org.flowable.validation.ValidationError;
 import org.flowable.validation.validator.impl.BpmnModelValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import sun.dc.pr.PRError;
 
 import java.util.Date;
 import java.util.List;
@@ -81,7 +80,7 @@ public class BusinessWorkFlowServiceImpl implements BusinessWorkFlowService {
     public String createStart(String currentEditWorkFlowStoredKey, String name) {
         StartEvent startEvent = new StartEvent();
         startEvent.setId(WORKFLOW_START_ID);
-        startEvent.setName(StringUtils.isBlank(name) ? DEFAULT_START_NAME : name);
+        startEvent.setName(StringUtils.isBlank(name) ? DEFAULT_CN_NAME_START : name);
         addToProcess(currentEditWorkFlowStoredKey, startEvent);
         return WORKFLOW_START_ID;
     }
@@ -90,7 +89,7 @@ public class BusinessWorkFlowServiceImpl implements BusinessWorkFlowService {
     public String createEnd(String currentEditWorkFlowStoredKey, String name) {
         EndEvent endEvent = new EndEvent();
         endEvent.setId(WORKFLOW_END_ID);
-        endEvent.setName(StringUtils.isBlank(name) ? DEFAULT_END_NAME : name);
+        endEvent.setName(StringUtils.isBlank(name) ? DEFAULT_CN_NAME_END : name);
         addToProcess(currentEditWorkFlowStoredKey, endEvent);
         return WORKFLOW_END_ID;
     }
@@ -294,7 +293,7 @@ public class BusinessWorkFlowServiceImpl implements BusinessWorkFlowService {
     private UserTask createApproveUserTask(String approveName, String approveAssigneeGroup, boolean withAudit) {
         UserTask userTaskApprove = new UserTask();
         userTaskApprove.setId(generateSid());
-        userTaskApprove.setName(StringUtils.isBlank(approveName) ? DEFAULT_APPROVE_NAME : approveName);
+        userTaskApprove.setName(StringUtils.isBlank(approveName) ? DEFAULT_CN_NAME_APPROVE : approveName);
         userTaskApprove.setAssignee(EXPRESSION_ASSIGNEE_APPROVER);
         userTaskApprove.setCandidateGroups(Lists.newArrayList(approveAssigneeGroup));
 
@@ -316,7 +315,7 @@ public class BusinessWorkFlowServiceImpl implements BusinessWorkFlowService {
     private UserTask createAuditUserTask(String auditName, String auditAssigneeGroup, boolean multi) {
         UserTask userTaskAudit = new UserTask();
         userTaskAudit.setId(generateSid());
-        userTaskAudit.setName(StringUtils.isBlank(auditName) ? DEFAULT_AUDIT_NAME : auditName);
+        userTaskAudit.setName(StringUtils.isBlank(auditName) ? DEFAULT_CN_NAME_AUDIT : auditName);
         if (multi) {
             userTaskAudit.setAssignee(EXPRESSION_VAR_MULTI_AUDITOR);
 
